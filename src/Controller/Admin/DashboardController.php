@@ -68,22 +68,24 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Musageadmin');
+            ->setTitle('Boutique Lafleur');
     }
-
+    
     public function configureMenuItems(): iterable
     {
         yield MenuItem::section('Gestion des stocks', 'fas fa-home');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
               MenuItem::linkToCrud('Ajouter un produit', 'fas fa-plus', MusageProduits::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Voir les produits', 'fas fa-eye', MusageProduits::class)
+              MenuItem::linkToCrud('Voir les produits', 'fas fa-eye', MusageProduits::class),
+              MenuItem::linkToCrud('Stock des lots', 'fas fa-eye', MusageLots::class),
         ]);
 
         yield MenuItem::section('Gestion des commandes', 'fa fa-home');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Voir les commandes', 'fas fa-eye', MusageCommandes::class)
+            MenuItem::linkToCrud('Voir les commandes', 'fas fa-eye', MusageCommandes::class),
+            MenuItem::linkToCrud('Détail', 'fas fa-eye', MusageCommandeProduit::class)
       ]);
-        //yield MenuItem::linkToCrud('Lots', 'fas fa-list', MusageLots::class);
-        // yield MenuItem::linkToCrud('Commandes', 'fas fa-list', MusageCommandes::class);
+      yield MenuItem::linkToLogout('Logout', 'fa fa-right-from-bracket');
+
     }
 }

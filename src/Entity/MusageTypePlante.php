@@ -29,6 +29,11 @@ class MusageTypePlante
         $this->musageProduits = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nomPlante;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

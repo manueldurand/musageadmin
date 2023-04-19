@@ -59,7 +59,19 @@ class MusageProduits
         $this->musageCommandeDansProduits = new ArrayCollection();
         $this->musageProduitCategories = new ArrayCollection();
     }
+    public function getNomPlante(): ?string 
+    {
+        return $this->planteId->getNomPlante();
+    }
 
+    public function getNomCouleur(): ?string 
+    {
+        return $this->couleurId->getNomCouleur();
+    }
+    public function getMusageTypeUnite(): ?string
+    {
+        return $this->uniteId->getMusageTypeUnite();
+    }
     public function getId(): ?int
     {
         return $this->id;
