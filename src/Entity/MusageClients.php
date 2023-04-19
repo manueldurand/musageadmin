@@ -2,7 +2,20 @@
 
 namespace App\Entity;
 
+use App\Entity\MusageAdresses;
+use App\Entity\MusageCodePostal;
+use App\Entity\MusageVilles;
+
 use App\Repository\MusageClientsRepository;
+use App\Repository\MusageAdressesRepository;
+use App\Repository\MusageCodePostalRepository;
+use App\Repository\MusageVillesRepository;
+use App\Repository\MusageCommandesRepository;
+use App\Repository\MusageCommandeProduitRepository;
+use App\Repository\MusageProduitsRepository;
+
+
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

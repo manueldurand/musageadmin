@@ -3,6 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\MusageAdressesRepository;
+use App\Repository\MusageClientsRepository;
+use App\Repository\MusageCodePostalRepository;
+use App\Repository\MusageVillesRepository;
+
+
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MusageAdressesRepository::class)]
