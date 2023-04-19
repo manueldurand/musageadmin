@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MusageProduits;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
@@ -25,7 +27,19 @@ class MusageProduitsCrudController extends AbstractCrudController
     {
         return MusageProduits::class;
     }
-
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Catalogue des produits')
+            ->setPageTitle('detail', 'Détail')
+            ->setPageTitle('new', 'Ajouter un produit')
+            ->setPageTitle('edit', 'Modifier');            ;
+    }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
     
     public function configureFields(string $pageName): iterable
     {

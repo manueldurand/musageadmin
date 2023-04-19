@@ -59,6 +59,14 @@ class MusageCommandes
 
         return $this;
     }
+    public function getnomClient(): ?string
+    {
+        return $this->clientId->getNomClient();
+    }
+    public function getPrenomClient(): ?string
+    {
+        return $this->clientId->getPrenomClient();
+    }
 
     public function getDateCommande(): ?\DateTimeInterface
     {
@@ -94,6 +102,10 @@ class MusageCommandes
         $this->lotId = $lotId;
 
         return $this;
+    }
+    public function getNomLot(): ?string
+    {
+        return $this->getNomLot();
     }
 
     public function getEtatCommande(): ?string

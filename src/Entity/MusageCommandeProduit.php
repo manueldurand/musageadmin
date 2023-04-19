@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\MusageCommandeProduitRepository;
+use App\Entity\MusageProduits;
+use App\Entity\MusageCommandes;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 
 #[ORM\Entity(repositoryClass: MusageCommandeProduitRepository::class)]
 class MusageCommandeProduit
@@ -40,10 +43,27 @@ class MusageCommandeProduit
 
         return $this;
     }
+    public function getCommandeNumber(): ?int
+    {
+        return $this->commandeId->getId();
+    }
+
 
     public function getProduitId(): ?MusageProduits
     {
         return $this->produitId;
+    }
+    public function getNomPlante(): ?string
+    {
+        return $this->produitId->getNomPlante();
+    }
+    public function getNomCouleur(): ?string
+    {
+        return $this->produitId->getNomCouleur();
+    }
+    public function getUnite(): ?string
+    {
+        return $this->produitId->getMusageTypeUnite();
     }
 
     public function setProduitId(?MusageProduits $produitId): self
@@ -63,5 +83,9 @@ class MusageCommandeProduit
         $this->quantite = $quantite;
 
         return $this;
+    }
+    public function getCommmandeStatus(): ?string
+    {
+        return $this->getCommandeId()->getEtatCommande();
     }
 }
