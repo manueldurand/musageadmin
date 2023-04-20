@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\MusageCommandeProduitRepository;
 use App\Entity\MusageProduits;
 use App\Entity\MusageCommandes;
+use App\Entity\MusageClients;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -84,8 +86,26 @@ class MusageCommandeProduit
 
         return $this;
     }
-    public function getCommmandeStatus(): ?string
+    public function getStatus(): ?string
     {
-        return $this->getCommandeId()->getEtatCommande();
+        return $this->commandeId->getEtatCommande();
     }
+    public function getDateCom(): ?DateTime
+    {
+        return $this->commandeId->getDateCommande();
+    }
+    public function getDateSouhaitee(): ?DateTime
+    {
+        return $this->commandeId->getLivraisonSouhaitee();
+    }
+    public function getClient(): ?string
+    {
+        return $this->commandeId->getClientId()->getPrenomClient().' '.$this->commandeId->getClientId()->getNomClient();
+    }
+
+    public function getNomLot(): ?string
+    {
+        return $this->commandeId->getLotId()->getNomLot();
+    }
+
 }

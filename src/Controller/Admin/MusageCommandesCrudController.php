@@ -23,8 +23,9 @@ class MusageCommandesCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle('index', 'Liste des commandes')
-            ->setPageTitle('detail', 'Détail d\'une commande')
-            ->setPageTitle('edit', 'Modifier');            ;
+            ->setPageTitle('edit', 'Modifier')
+            ->setDefaultSort(['livraisonSouhaitee' => 'ASC'])
+            ->setDateTimeFormat('d/MM/Y H:mm');
     }
     public function configureActions(Actions $actions): Actions
     {
@@ -37,8 +38,7 @@ class MusageCommandesCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            TextField::new('nomClient', 'Nom'),
-            TextField::new('prenomClient', 'Prénom'),
+            TextField::new('Client'),
             DateTimeField::new('dateCommande'),
             DateTimeField::new('livraisonSouhaitee', 'livraison souhaitée'),
             TextField::new('etatCommande', 'statut'),

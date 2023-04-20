@@ -83,6 +83,10 @@ class MusageClients
 
         return $this;
     }
+    public function getClient(): ?string
+    {
+        return $this->nomClient.' '.$this->prenomClient;
+    }
 
     public function getEmailClient(): ?string
     {
@@ -130,6 +134,22 @@ class MusageClients
         $this->adresseId = $adresseId;
 
         return $this;
+    }
+    public function getAdresseClient(): ?string
+    {
+        return $this->getAdresseId()->getAdresse();
+    }
+    public function getCodePostalClient(): ?string
+    {
+        return $this->getAdresseId()->getCodePostalId()->getCodePostal();
+    }
+    public function getComplementAdresseClient(): ?string
+    {
+        return $this->getAdresseId()->getComplementAdresse();
+    }
+    public function getVilleClient(): ?string
+    {
+        return $this->getAdresseId()->getVilleId()->getNomVille();
     }
 
     /**

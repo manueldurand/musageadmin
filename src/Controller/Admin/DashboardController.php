@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\MusageProduits;
 use App\Entity\MusageCommandes;
 use App\Entity\MusageAdresses;
+use App\Entity\MusageClients;
 use App\Entity\MusageCodePostal;
 use App\Entity\MusageVilles;
 use App\Entity\Musagelients;
@@ -33,7 +34,6 @@ class DashboardController extends AbstractDashboardController
 {
     public function __construct(private AdminUrlGenerator $adminUrlGenerator)
     {
-
     }
 
     #[Route('/admin', name: 'admin')]
@@ -71,22 +71,25 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Boutique Lafleur')
             ->setTranslationDomain('admin');
     }
-    
+
     public function configureMenuItems(): iterable
     {
         yield MenuItem::section('Gestion des stocks', 'fas fa-home');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
-              MenuItem::linkToCrud('Ajouter un produit', 'fas fa-plus', MusageProduits::class)->setAction(Crud::PAGE_NEW),
-              MenuItem::linkToCrud('Voir les produits', 'fas fa-eye', MusageProduits::class),
-              MenuItem::linkToCrud('Stock des lots', 'fas fa-eye', MusageLots::class),
+            MenuItem::linkToCrud('Ajouter un produit', 'fas fa-plus', MusageProduits::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les produits', 'fas fa-eye', MusageProduits::class),
+            MenuItem::linkToCrud('Stock des lots', 'fas fa-eye', MusageLots::class),
         ]);
 
-        yield MenuItem::section('Gestion des commandes', 'fa fa-home');
+        yield MenuItem::section('Gestion des commandes', 'fa fa-basket-shopping');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Voir les commandes', 'fas fa-eye', MusageCommandes::class),
             MenuItem::linkToCrud('Détail', 'fas fa-eye', MusageCommandeProduit::class)
-      ]);
-      yield MenuItem::linkToLogout('Logout', 'fa fa-right-from-bracket');
+        ]);
+        yield MenuItem::section('Clients', 'fas fa-users');
+        yield MenuItem::linkToCrud('Liste des clients', 'fas fa-address-card', MusageClients::class);
+        yield MenuItem::section();
 
+        yield MenuItem::linkToLogout('Logout', 'fa fa-right-from-bracket');
     }
 }

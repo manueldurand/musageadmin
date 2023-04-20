@@ -59,13 +59,9 @@ class MusageCommandes
 
         return $this;
     }
-    public function getnomClient(): ?string
+    public function getClient(): ?string
     {
-        return $this->clientId->getNomClient();
-    }
-    public function getPrenomClient(): ?string
-    {
-        return $this->clientId->getPrenomClient();
+        return $this->clientId->getNomClient().' '.$this->clientId->getPrenomClient();
     }
 
     public function getDateCommande(): ?\DateTimeInterface
