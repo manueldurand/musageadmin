@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MusageProduits;
+use App\Entity\MusageTypePlante;
+use Doctrine\ORM\Mapping\Entity;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -27,20 +29,8 @@ class MusageProduitsCrudController extends AbstractCrudController
     {
         return MusageProduits::class;
     }
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setPageTitle('index', 'Catalogue des produits')
-            ->setPageTitle('detail', 'Détail')
-            ->setPageTitle('new', 'Ajouter un produit')
-            ->setPageTitle('edit', 'Modifier');            ;
-    }
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->add(Crud::PAGE_INDEX, Action::DETAIL);
-    }
-    
+
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -53,6 +43,27 @@ class MusageProduitsCrudController extends AbstractCrudController
             MoneyField::new('prix')->setCurrency('EUR')->setStoredAsCents(false),
             ImageField::new('image1')->setBasePath('assets')->setUploadDir('public/assets'),
         ];
+    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', 'Catalogue des produits')
+            //->setDefaultSort(['MusageTypePlante' => 'ASC'])
+            ->setEntityLabelInPlural('Articles')
+            ->setEntityLabelInSingular('Article')
+            ->setPageTitle('detail', 'Détail')
+            ->setPageTitle('new', 'Ajouter un produit')
+            ->setPageTitle('edit', 'Modifier')
+            ->setPaginatorPageSize(10);        ;
+    }
+
+    
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+            ->remove(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE);
     }
     
 }

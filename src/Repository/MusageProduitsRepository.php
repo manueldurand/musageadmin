@@ -39,20 +39,18 @@ class MusageProduitsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return MusageProduits[] Returns an array of MusageProduits objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return MusageProduits[] Returns an array of MusageProduits objects
+     */
+    public function getLowStockProducts(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.stock < :val')
+            ->setParameter('val', 10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?MusageProduits
 //    {

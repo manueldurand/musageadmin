@@ -23,6 +23,8 @@ class MusageLotsCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Liste des lots')
             ->setPageTitle('edit', 'Modifier')
+            ->setEntityLabelInPlural('Lots')
+            ->setEntityLabelInSingular('Lot')
             //->setDefaultSort(['livraisonSouhaitee' => 'ASC'])
             ->setDateTimeFormat('d/MM/Y H:mm');
     }
